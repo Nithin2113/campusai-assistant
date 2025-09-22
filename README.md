@@ -20,6 +20,6 @@ A professional AI-powered chatbot for college students with document search capa
 - Client-side document search
 
 ## Live Demo
-[Your deployment URL here]
+(https://nithin2113.github.io/campusai-assistant/)
 # campusai-assistant
 Professional AI chatbot for Oxford College of Engineering
