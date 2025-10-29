@@ -5,278 +5,173 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CampusAI Assistant | Oxford College of Engineering</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Professional Login Page -->
-    <div class="auth-overlay" id="authOverlay">
-        <div class="login-background">
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="gradient-orb orb-3"></div>
-        </div>
-        
-        <div class="auth-main-container">
-            <!-- College Header -->
-            <div class="college-header">
-                <div class="college-logo-section">
-                    <div class="college-main-logo">🎓</div>
-                    <div class="college-info">
-                        <h1 class="college-title">Oxford College of Engineering</h1>
-                        <p class="college-subtitle">Campus Intelligence System</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Login Section -->
-            <div class="login-section">
-                <div class="login-container">
-                    <div class="login-form-header">
-                        <h2>Sign in to CampusAI</h2>
-                        <p>Enter your college credentials to continue</p>
-                    </div>
-
-                    <form class="login-form" id="loginFormElement">
-                        <div class="form-group">
-                            <label for="studentId">Student ID or USN</label>
-                            <input type="text" id="studentId" name="studentId" placeholder="e.g., 1BG21CS001" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <div class="password-input-wrapper">
-                                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                                <button type="button" class="password-toggle" onclick="togglePasswordVisibility()">
-                                    <svg class="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                        <circle cx="12" cy="12" r="3"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="form-options">
-                            <label class="remember-checkbox">
-                                <input type="checkbox" id="rememberMe" name="rememberMe">
-                                <span class="checkbox-mark"></span>
-                                <span class="checkbox-text">Keep me signed in for 30 days</span>
-                            </label>
-                        </div>
-
-                        <button type="submit" class="continue-btn" id="loginBtn">
-                            <span class="btn-text">Continue</span>
-                            <div class="btn-loader hidden">
-                                <div class="spinner"></div>
-                            </div>
-                        </button>
-
-                        <div class="login-divider">
-                            <span>or</span>
-                        </div>
-
-                        <button type="button" class="demo-access-btn" onclick="demoLogin()">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-                                <line x1="9" y1="9" x2="9.01" y2="9"/>
-                                <line x1="15" y1="9" x2="15.01" y2="9"/>
-                            </svg>
-                            Try Demo Access
-                        </button>
-
-                        <div class="login-help">
-                            <p>Need access to the system?</p>
-                            <a href="mailto:admin@oxfordcollege.edu.in" class="help-link">Contact Administration</a>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- System Features -->
-                <div class="features-section">
-                    <div class="feature-item">
-                        <div class="feature-icon">🔒</div>
-                        <div class="feature-content">
-                            <h4>Secure Authentication</h4>
-                            <p>Your credentials are protected with industry-standard security</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🤖</div>
-                        <div class="feature-content">
-                            <h4>AI-Powered Assistant</h4>
-                            <p>Get instant answers from official college documents</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">📱</div>
-                        <div class="feature-content">
-                            <h4>Multi-Device Access</h4>
-                            <p>Available on desktop, tablet, and mobile devices</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main App -->
     <div class="app-container">
+        <!-- HEADER -->
         <header class="main-header">
             <div class="header-content">
                 <div class="brand-section">
-                    <div class="college-logo">🎓</div>
+                    <div class="logo">🎓</div>
                     <div class="brand-text">
                         <h1>CampusAI</h1>
-                        <span class="subtitle">Smart Assistant</span>
+                        <span class="subtitle">Intelligent Assistant</span>
                     </div>
                 </div>
-
-                <div class="theme-toggle-section">
-                    <button class="theme-toggle" id="themeToggle" title="Switch theme">
-                        ☀️<span class="moon-icon">🌙</span>
-                    </button>
-                </div>
-
-                <div class="status-section" id="statusSection">
-                    <div class="status-dot"></div>
-                    <span class="status-text">Online</span>
-                </div>
-
-                <div class="user-info-section hidden" id="userInfoSection">
-                    <div class="user-avatar" id="userAvatar">NS</div>
-                    <div class="user-details">
-                        <h4 id="userName">Nithin S</h4>
-                        <p id="userBranch">CSE - 6th Sem</p>
+                <div class="header-actions">
+                    <div class="api-status" id="apiStatus">
+                        <span class="status-dot"></span>
+                        <span>Local Mode</span>
                     </div>
-                    <button class="logout-btn" onclick="logout()">Sign Out</button>
+                    <button class="theme-toggle" id="themeToggle">🌙</button>
+                    <div class="user-profile" id="userProfile">
+                        <div class="user-avatar" id="userAvatar">👤</div>
+                        <div id="userDetails">
+                            <div style="font-size: 0.875rem; font-weight: 700;">Guest User</div>
+                            <div style="font-size: 0.75rem; color: var(--text-tertiary);">Student</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
 
+        <!-- MAIN CHAT AREA -->
         <main class="chat-interface">
-            <div class="chat-container">
-                <div class="welcome-section">
-                    <div class="welcome-header">
-                        <h2>Oxford College of Engineering</h2>
-                        <p class="welcome-subtitle">Get instant answers from official college documents</p>
-                    </div>
-                    
-                    <div class="capabilities-grid">
-                        <div class="capability-card">
-                            <div class="capability-icon">📚</div>
-                            <div class="capability-text">
-                                <h4>Academic Queries</h4>
-                                <p>Exam schedules, regulations, syllabus</p>
-                            </div>
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-content">
+                    <h2>Welcome to CampusAI</h2>
+                    <p>Your intelligent assistant for Oxford College of Engineering</p>
+                    <div class="quick-actions">
+                        <div class="quick-action" data-query="What are the revaluation fees?">
+                            <span class="quick-action-icon">📝</span>
+                            <h4>Revaluation</h4>
+                            <p>Fees & Process</p>
                         </div>
-                        
-                        <div class="capability-card">
-                            <div class="capability-icon">💼</div>
-                            <div class="capability-text">
-                                <h4>Placement Support</h4>
-                                <p>Drive details, eligibility, preparation</p>
-                            </div>
+                        <div class="quick-action" data-query="Tell me about placement drives">
+                            <span class="quick-action-icon">💼</span>
+                            <h4>Placements</h4>
+                            <p>Upcoming Drives</p>
                         </div>
-                        
-                        <div class="capability-card">
-                            <div class="capability-icon">💰</div>
-                            <div class="capability-text">
-                                <h4>Fee Information</h4>
-                                <p>Payment deadlines, structures, procedures</p>
-                            </div>
+                        <div class="quick-action" data-query="What is the hostel fee structure?">
+                            <span class="quick-action-icon">🏠</span>
+                            <h4>Hostel</h4>
+                            <p>Rules & Fees</p>
                         </div>
-                        
-                        <div class="capability-card">
-                            <div class="capability-icon">🏠</div>
-                            <div class="capability-text">
-                                <h4>Campus Services</h4>
-                                <p>Hostel, library, facilities, transport</p>
-                            </div>
+                        <div class="quick-action" data-query="When are semester exams?">
+                            <span class="quick-action-icon">📚</span>
+                            <h4>Examinations</h4>
+                            <p>Schedule & Rules</p>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="messages-area" id="messagesArea">
-                    <div class="ai-message">
+            <!-- Messages Container -->
+            <div class="messages-container" id="messagesContainer">
+                <div class="message ai-message">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
                         <div class="message-header">
-                            <div class="message-avatar ai-avatar">🤖</div>
+                            <span class="message-sender">CampusAI</span>
+                            <span class="ai-badge">✨ AI Powered</span>
                             <span class="message-time">Just now</span>
                         </div>
-                        <div class="message-content">
-                            <p>Hello! I'm your Campus AI Assistant. I can search through official college documents and provide accurate answers with proper sources.</p>
-                            <p class="message-hint">Try asking: "What are the revaluation fees?" or "When is the next placement drive?"</p>
+                        <div class="message-text">
+                            <p>Hello! I'm your AI-powered Campus Assistant. I can help you with:</p>
+                            <p style="margin-top: 0.75rem;">
+                                <strong>📚 Academic:</strong> Regulations, exams, revaluation<br>
+                                <strong>💰 Financial:</strong> Fee structures, scholarships<br>
+                                <strong>💼 Placements:</strong> Drives, eligibility, preparation<br>
+                                <strong>🏠 Campus:</strong> Hostel, library, facilities
+                            </p>
+                            <p style="margin-top: 0.75rem; font-style: italic; opacity: 0.8;">
+                                Ask me anything about college policies and procedures!
+                            </p>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="typing-indicator hidden" id="typingIndicator">
-                    <div class="message-header">
-                        <div class="message-avatar ai-avatar">🤖</div>
-                        <span class="message-time">Now</span>
-                    </div>
-                    <div class="typing-animation">
-                        <div class="typing-dots">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <span class="typing-text">Searching documents...</span>
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="input-wrapper">
+                    <textarea 
+                        id="userInput" 
+                        class="input-field" 
+                        placeholder="Ask me anything about college..."
+                        rows="1"
+                    ></textarea>
+                    <div class="input-actions">
+                        <button class="action-btn attach-btn" id="attachBtn" title="Configure AI">⚙️</button>
+                        <button class="action-btn send-btn" id="sendBtn" title="Send message">➤</button>
                     </div>
                 </div>
-
-                <div class="input-section">
-                    <div class="input-container">
-                        <div class="input-wrapper">
-                            <textarea 
-                                id="userInput" 
-                                placeholder="Ask me anything about college policies, procedures, or information..."
-                                rows="1"
-                                maxlength="500"
-                            ></textarea>
-                            <div class="input-actions">
-                                <span class="char-count" id="charCount">0/500</span>
-                                <button id="sendButton" class="send-button">➤</button>
-                            </div>
-                        </div>
-                        <div class="input-suggestions" id="inputSuggestions">
-                            <button class="suggestion-chip" data-query="What are the revaluation fees and deadlines?">Revaluation Process</button>
-                            <button class="suggestion-chip" data-query="Tell me about upcoming placement drives">Placement Drives</button>
-                            <button class="suggestion-chip" data-query="What are the hostel rules and regulations?">Hostel Information</button>
-                            <button class="suggestion-chip" data-query="How do I apply for scholarships?">Scholarships</button>
-                        </div>
-                    </div>
+                <div class="suggestions">
+                    <div class="suggestion-chip">What are the revaluation fees?</div>
+                    <div class="suggestion-chip">Tell me about placement drives</div>
+                    <div class="suggestion-chip">Hostel accommodation details</div>
+                    <div class="suggestion-chip">Minimum attendance required</div>
                 </div>
             </div>
         </main>
-
-        <div class="document-modal hidden" id="documentModal">
-            <div class="modal-backdrop" onclick="closeDocumentModal()"></div>
-            <div class="modal-container">
-                <div class="modal-header">
-                    <h3>📄 Source Document</h3>
-                    <button class="modal-close" onclick="closeDocumentModal()">×</button>
-                </div>
-                <div class="modal-body" id="modalBody">
-                    <div class="document-preview">
-                        <div class="document-info">
-                            <h4 id="documentTitle">Academic Regulations 2025</h4>
-                            <p id="documentDetails">Page 15, Section 4.2</p>
-                        </div>
-                        <div class="document-excerpt" id="documentExcerpt">
-                            <p>Document content will be displayed here when you click on source citations.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <footer class="app-footer">
-            <div class="footer-content">
-                <span class="powered-by">CampusAI Assistant - Oxford College of Engineering</span>
-            </div>
-        </footer>
     </div>
 
+    <!-- API Configuration Modal -->
+    <div class="modal-overlay hidden" id="apiModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>🔌 AI Integration Setup</h3>
+                <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                    Connect your AI provider to enable intelligent responses
+                </p>
+            </div>
+            <div class="modal-body">
+                <div class="info-box">
+                    <h4>ℹ️ How to Get API Keys</h4>
+                    <p><strong>Google Gemini (FREE):</strong> <code>aistudio.google.com</code></p>
+                    <p style="margin-top: 0.5rem;"><strong>OpenAI:</strong> <code>platform.openai.com</code></p>
+                    <p style="margin-top: 0.5rem;"><strong>Anthropic:</strong> <code>console.anthropic.com</code></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="apiProvider">AI Provider</label>
+                    <select id="apiProvider">
+                        <option value="local">Local Knowledge Base (No API Required)</option>
+                        <option value="gemini">Google Gemini (FREE)</option>
+                        <option value="openai">OpenAI (GPT-4, GPT-3.5)</option>
+                        <option value="anthropic">Anthropic (Claude)</option>
+                    </select>
+                </div>
+
+                <div class="form-group hidden" id="apiKeyGroup">
+                    <label for="apiKey">API Key</label>
+                    <input type="password" id="apiKey" placeholder="Paste your API key here">
+                    <div class="form-hint">Stored locally in your browser only</div>
+                </div>
+
+                <div class="form-group hidden" id="modelGroup">
+                    <label for="modelSelect">Model</label>
+                    <select id="modelSelect">
+                        <option value="gpt-4">GPT-4 (Most Capable)</option>
+                        <option value="gpt-3.5-turbo">GPT-3.5 Turbo (Faster & Cheaper)</option>
+                    </select>
+                </div>
+
+                <div class="info-box" style="background: var(--success-bg); border-color: var(--success);">
+                    <h4 style="color: var(--success);">✅ Recommended: Google Gemini</h4>
+                    <p>Free API with generous limits - perfect for students!</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveApiBtn">Save & Connect</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
     <script src="config.js"></script>
     <script src="app.js"></script>
 </body>
